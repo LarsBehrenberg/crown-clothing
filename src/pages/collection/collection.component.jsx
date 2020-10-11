@@ -10,15 +10,20 @@ import CollectionItem from '../../components/collection-item/collection-item.com
 // Styles
 import './collection.styles.scss'
 
-const CollectionPage = ({ collection }) => (
-  <div className="collection-page">
-    {console.log(collection)}
-    <h2>Collection page</h2>
-    {collection.items.map((item) => (
-      <CollectionItem key={item.id} item={item} />
-    ))}
-  </div>
-)
+const CollectionPage = ({ collection }) => {
+  const { items, title } = collection
+  return (
+    <div className="collection-page">
+      {console.log(collection)}
+      <h2 className="title">{title}</h2>
+      <div className="items">
+        {items.map((item) => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const mapStateToProps = (state, ownProps) => ({
   collection: selectShopCollectionById(ownProps.match.params.collectionId)(
